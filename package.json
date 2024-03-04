@@ -1,5 +1,5 @@
 {
-  "name": "puppeteer-demo",
+  "name": "bnu-timetable-getter",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "start": "node ./index.js"
   },
   "author": "",
-  "license": "MIT",
+  "license": "GPL-3.0",
   "type": "module",
   "private": true,
   "dependencies": {
