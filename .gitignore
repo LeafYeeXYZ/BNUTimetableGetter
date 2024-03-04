@@ -1,0 +1,5 @@
+node_modules
+package-lock.json
+download/**/*.*
+!.gitkeep # 里面用于占位的文件一般命名为 .gitkeep
+env.js
