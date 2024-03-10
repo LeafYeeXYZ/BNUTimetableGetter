@@ -7,7 +7,7 @@
 // 引入依赖
 import { main } from './function/main.js'
 import { env } from './env.js'
-import inquirer from 'inquirer';
+import inquirer from 'inquirer'
 
 if (!env.USER_NAME || !env.PASSWORD || !env.DISPLAY_NAME) {
   const answers = await inquirer.prompt([
