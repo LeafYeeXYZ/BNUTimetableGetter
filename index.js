@@ -33,10 +33,10 @@ if (!env.USER_NAME || !env.PASSWORD || !env.DISPLAY_NAME) {
 }
 
 // 运行爬虫
-main(env).then(() => {
-  console.info('\n爬取成功\n三秒后将自动退出\n')
-  setTimeout(() => process.exit(), 3000)
-}).catch(e => {
-  console.error(`\n爬取失败:\n请检查账号密码是否错误\n以及网络环境是否是校园网\n错误信息:\n${e}\n三秒后将自动退出\n`)
-  setTimeout(() => process.exit(), 3000)
-})
+main(env)
+  .then(() => console.log('\n爬取成功:\n图片和网页文件已保存\n您可以在 download 文件夹中查看\n'))
+  .catch(e => console.error(`\n爬取失败:\n请检查账号密码是否错误\n以及网络环境是否是校园网\n错误信息:\n${e}\n`))
+  .finally(() => {
+    console.log('3秒后自动退出')
+    setTimeout(() => process.exit(), 3000)
+  })

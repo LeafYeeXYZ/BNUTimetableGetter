@@ -89,23 +89,17 @@ async function main(env) {
     // 等待页面加载
     await wait()
     console.log('按课表查看')
-
     // 截图
     await page.screenshot({ path: path.resolve(__dirname, '../download', `${env.DISPLAY_NAME}.png`) })
     console.log('保存截图')
-
     // 获取课表信息
     const table = await iframe.childFrames()[0].$eval('body', body => body.innerHTML)
     // 写入文件
     fs.writeFileSync(path.resolve(__dirname, '../download', `${env.DISPLAY_NAME}.html`), table)
     console.log('保存课表信息')
-
     // 关闭浏览器
     await browser.close()
-    console.log('浏览器已关闭')
-
-    // 结束
-    console.log('爬取结束')
+    console.log('关闭浏览器')
   } catch (e) {
     throw new Error(e)
   }
