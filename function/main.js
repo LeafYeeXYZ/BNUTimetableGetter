@@ -21,7 +21,7 @@ async function main(env) {
 
     // 创建浏览器实例
     const browser = await puppeteer.launch({
-      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36',
+      userAgent: '',
       defaultViewport: {
         width: 2160,
         height: 1440
@@ -33,6 +33,7 @@ async function main(env) {
     // 打开登陆页面
     const page = await browser.newPage()
     console.log('打开新页面')
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36')
     await page.goto('https://cas.bnu.edu.cn/cas/login?service=http%3A%2F%2Fzyfw.bnu.edu.cn%2F', { waitUntil: 'networkidle2' })
     console.log('打开登陆页面')
 
