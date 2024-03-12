@@ -21,7 +21,6 @@ async function main(env) {
 
     // 创建浏览器实例
     const browser = await puppeteer.launch({
-      userAgent: '',
       defaultViewport: {
         width: 2160,
         height: 1440
@@ -37,12 +36,6 @@ async function main(env) {
     await page.goto('https://cas.bnu.edu.cn/cas/login?service=http%3A%2F%2Fzyfw.bnu.edu.cn%2F', { waitUntil: 'networkidle2' })
     console.log('打开登陆页面')
 
-    // 定义等待函数
-    const wait = () => page.waitForNetworkIdle({
-      waitUntil: 'networkidle2',
-      timeout: 0
-    })
-
     // 输入用户名和密码
     await page.type('#un', env.USER_NAME)
     await page.type('#pd', env.PASSWORD)
@@ -51,20 +44,20 @@ async function main(env) {
     // 点击登录按钮
     await page.click('#index_login_btn')
     // 等待页面加载
-    await wait()
+    await page.waitForNetworkIdle({ timeout: 60000 })
     console.log('已尝试登陆')
 
     // 如果有，点击 "继续访问原地址"
     try {
       await page.click('body > div > div.mid_container > div > div > div > div.select_login_box > div:nth-child(6) > a')
-      await wait()
+      await page.waitForNetworkIdle({ timeout: 60000 })
       console.log('跳转到教务服务系统')
     } catch (e) {}
 
     // 点击 "网上选课"
     await page.click('li[data-code="JW1304"]')
     // 等待页面加载
-    await wait()
+    await page.waitForNetworkIdle({ timeout: 60000 })
     console.log('跳转到网上选课')
 
     // 获取 iframe
@@ -74,7 +67,7 @@ async function main(env) {
     // 点击 "我的课表"
     await iframe.click('#title2135')
     // 等待页面加载
-    await wait()
+    await page.waitForNetworkIdle({ timeout: 60000 })
     console.log('进入我的课表')
 
     // 重新获取 iframe
@@ -84,11 +77,11 @@ async function main(env) {
     // 点击 "按课表查看"
     await iframe.click('#theSearchArea > table > tbody > tr > td > label:nth-child(5)')
     // 等待页面加载
-    await wait()
+    await page.waitForNetworkIdle({ timeout: 60000 })
     // 点击 "检索"
     await iframe.click('#btnQry')
     // 等待页面加载
-    await wait()
+    await page.waitForNetworkIdle({ timeout: 60000 })
     console.log('按课表查看')
     // 截图
     await page.screenshot({ path: path.resolve(__dirname, '../download', `${env.DISPLAY_NAME}.png`) })

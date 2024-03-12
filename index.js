@@ -9,7 +9,7 @@ import { main } from './function/main.js'
 import { env } from './env.js'
 import inquirer from 'inquirer'
 
-if (!env.USER_NAME || !env.PASSWORD || !env.DISPLAY_NAME) {
+if (!env.USER_NAME || !env.PASSWORD) {
   const answers = await inquirer.prompt([
     {
       type: 'input',
@@ -30,6 +30,8 @@ if (!env.USER_NAME || !env.PASSWORD || !env.DISPLAY_NAME) {
   env.USER_NAME = answers.USER_NAME
   env.PASSWORD = answers.PASSWORD
   env.DISPLAY_NAME = answers.DISPLAY_NAME || answers.USER_NAME
+} else if (!env.DISPLAY_NAME) {
+  env.DISPLAY_NAME = env.USER_NAME
 }
 
 // 运行爬虫
