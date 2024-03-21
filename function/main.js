@@ -1,9 +1,9 @@
 // 引入依赖
 import puppeteer from 'puppeteer'
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 // 修复 __dirname
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'node:url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
