@@ -7,16 +7,18 @@ import (
 )
 
 var (
-	StudentNumber = "" // 学号
-	Password = "" // 密码
-	IsBusy = false // 是否需要点击 "继续访问原地址"
+	StudentNumber string = "" // 学号
+	Password string = "" // 密码
+	IsBusy bool = false // 是否需要点击 "继续访问原地址"
 )
 
 func main() {
 	// 检查学号和密码是否为空
 	if StudentNumber == "" || Password == "" {
-		fmt.Println("学号和密码不能为空")
-		return
+		fmt.Print("请输入学号: ")
+		fmt.Scanln(&StudentNumber)
+		fmt.Print("请输入密码: ")
+		fmt.Scanln(&Password)
 	}
 	// 安装浏览器
 	fmt.Println("安装浏览器")
@@ -146,5 +148,6 @@ func main() {
 		fmt.Println("关闭 Playwright 实例失败", err)
 		return
 	}
-	fmt.Println("成功")
+	fmt.Println("成功, 按空格键退出")
+	fmt.Scanf("%s")
 }
