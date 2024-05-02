@@ -1,0 +1,2 @@
+# BNUTimetableGetterGo
+未之后做的抢课程序进行可行性验证
