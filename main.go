@@ -149,5 +149,5 @@ func main() {
 		return
 	}
 	fmt.Println("成功, 按空格键退出")
-	fmt.Scanf("%s")
+	fmt.Scan()
 }
